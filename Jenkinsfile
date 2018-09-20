@@ -3,13 +3,14 @@ pipeline {
     tools {
         maven "localMaven"
         jdk   "localJDK"
+        docker "localDOCKER"
     }
     stages{
         stage("Build"){
             steps{
                 sh 'mvn clean package'
                 echo "Pacote creado"
-                sh 'docker build . -t tomcatwebapp:${env.BUILD_ID}'
+                sh "docker build . -t tomcatwebapp:${env.BUILD_ID}"
             }
             post {
                 success {
