@@ -22,7 +22,7 @@ pipeline {
                     echo "Running Container"
                     sh "docker container run -d -p 8090:8080 --name tomcatwebapp-${env.BUILD_ID} tomcatwebapp:${env.BUILD_ID}"
                     echo "Prunando imagens"
-                    sh "docker image prune"
+                    sh "docker image prune -f"
                 }
             }
         }
