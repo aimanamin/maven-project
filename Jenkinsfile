@@ -9,7 +9,6 @@ pipeline {
             steps{
                 sh 'mvn clean package'
                 echo "Pacote creado"
-                app = docker.build(".")
             }
             post {
                 success {
@@ -18,5 +17,8 @@ pipeline {
                 }
             }
         }
+    }
+    stage("Build image") {
+        app = docker.build(".")
     }
 }
