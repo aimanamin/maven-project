@@ -16,7 +16,7 @@ pipeline {
             post {
                 success {
                     echo "Shutdown containers"
-                    sh 'docker container stop $(docker container ps -q)'
+                    sh 'docker container stop $(docker container ps -q) || echo "No running container"'
                     echo "removendo containers"
                     sh 'docker container rm $(docker container ps -qa)'
                     echo "Running Container"
