@@ -1,6 +1,6 @@
 FROM tomcat:8
 
-ADD ./*/taget/*.war /usr/local/tomcat/webapps/
+ADD ./webapp/taget/webapp.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
