@@ -24,6 +24,10 @@ pipeline {
                     label "tomcatwebapp:${env.BUILD_ID}"
                 }
             }
+            steps{
+                echo "Running container"
+                sh "docker container run -d -p 8090:8080 --mame tomcatwebapp:${env.BUILD_ID} tomcatwebapp:${env.BUILD_ID}"
+            }
         }
     }
 }
