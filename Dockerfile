@@ -4,4 +4,4 @@ COPY webapp/target/webapp.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
-CMD ["cataliona.sh", "run"]
+CMD ["./bin/cataliona.sh", "run"]
