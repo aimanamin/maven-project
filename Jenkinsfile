@@ -9,6 +9,7 @@ pipeline {
             steps{
                 sh 'mvn clean package'
                 echo "Pacote creado"
+                sh "echo $(pwd)"
                 sh "docker build . -t tomcatwebapp:${env.BUILD_ID}"
             }
             post {
