@@ -15,8 +15,14 @@ pipeline {
             }
             post {
                 success {
+                    echo "Shutdown containers"
+                    sh "docker container stop $(docker container ps -q)"
+                    echo "removendo containers"
+                    sh "docker container rm $(docker container ps -qa)"
                     echo "Running Container"
-                    sh "docker run -p 8090:8080 --name tomcatwebapp-${env.BUILD_ID} tomcatwebapp:${env.BUILD_ID}"
+                    sh "docker container run -d -p 8090:8080 --name tomcatwebapp-${env.BUILD_ID} tomcatwebapp:${env.BUILD_ID}"
+                    echo "Prunando imagens"
+                    sh "docker image prune"
                 }
             }
         }
