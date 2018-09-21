@@ -16,7 +16,7 @@ pipeline {
             post {
                 success {
                     echo "Running Container"
-                    sh "docker run -p 8090:8080 --name tomcatwebapp:${env.BUILD_ID} tomcatwebapp:${env.BUILD_ID}"
+                    sh "docker run -p 8090:8080 --name tomcatwebapp-${env.BUILD_ID} tomcatwebapp:${env.BUILD_ID}"
                 }
             }
         }
