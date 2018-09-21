@@ -1,6 +1,8 @@
 FROM tomcat:8
 
-ADD ./webapp/taget/webapp.war /usr/local/tomcat/webapps/
+WORKDIR /var/lib/jenkins/workspace/Tomcat webapp
+
+ADD ./webapp/taget/*.war /usr/local/tomcat/webapps/
 
 EXPOSE 8080
 
