@@ -17,8 +17,8 @@ pipeline {
                 }
             }
         }
-    }
-    stage("Build image") {
-        app = docker.build(".")
+        stage("Build image") {
+            app = docker.build(".")
+        }
     }
 }
