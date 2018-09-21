@@ -9,6 +9,7 @@ pipeline {
             steps{
                 sh 'mvn clean package'
                 echo "Pacote creado"
+                sh "docker build . -t tomcatwebapp:${env.BUILD_ID}"
             }
             post {
                 success {
@@ -16,9 +17,6 @@ pipeline {
                     archiveArtifacts artifacts: '**/target/*.war'
                 }
             }
-        }
-        stage("Build image") {
-            app = docker.build(".")
         }
     }
 }
