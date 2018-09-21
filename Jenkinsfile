@@ -9,13 +9,19 @@ pipeline {
             steps{
                 sh 'mvn clean package'
                 echo "Pacote creado"
-                sh 'ls webapp'
-                sh "docker build . -t tomcatwebapp:${env.BUILD_ID}"
             }
             post {
                 success {
                     echo "Now Archiving ..."
                     archiveArtifacts artifacts: '**/target/*.war'
+                }
+            }
+        }
+        stage("Build Dockerfile"){
+            agent {
+                dockerfile {
+                    dir .
+                    label "tomcatwebapp:${env.BUILD_ID}"
                 }
             }
         }
