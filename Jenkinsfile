@@ -15,14 +15,9 @@ pipeline {
             }
             post {
                 success {
-                    echo "Now Archiving ..."
-                    archiveArtifacts artifacts: '**/target/*.war'
+                    echo "Running Container"
+                    sh "docker run -p 8090:8080 --name tomcatwebapp:${env.BUILD_ID} --alias tomcatwebapp tomcatwebapp:${env.BUILD_ID}"
                 }
-            }
-        }
-        post{
-            success {
-                sh "docker run -p 8090:8080 --name tomcatwebapp:${env.BUILD_ID} --alias tomcatwebapp tomcatwebapp:${env.BUILD_ID}"
             }
         }
     }
